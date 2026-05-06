@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="it">
 <head>
 <meta charset="UTF-8">
@@ -14,73 +15,74 @@
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--bg);color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:16px;min-height:100vh;}
-
   header{background:var(--surface);border-bottom:2px solid var(--accent);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
   .logo h1{font-weight:800;font-size:1.6rem;letter-spacing:3px;text-transform:uppercase;}
   .logo h1 span{color:var(--accent);}
   .date-now{font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--muted);letter-spacing:1px;}
-
   main{max-width:980px;margin:0 auto;padding:28px 18px;}
-
   .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px;}
   .scard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;border-left:4px solid var(--border);}
-  .scard.danger{border-left-color:var(--danger);}
-  .scard.warn{border-left-color:var(--warn);}
-  .scard.ok{border-left-color:var(--ok);}
-  .scard.info{border-left-color:var(--info);}
+  .scard.danger{border-left-color:var(--danger);}.scard.warn{border-left-color:var(--warn);}.scard.ok{border-left-color:var(--ok);}.scard.info{border-left-color:var(--info);}
   .scard .num{font-family:'Space Mono',monospace;font-size:2.2rem;font-weight:700;line-height:1;}
-  .scard.danger .num{color:var(--danger);}
-  .scard.warn .num{color:var(--warn);}
-  .scard.ok .num{color:var(--ok);}
-  .scard.info .num{color:var(--info);}
+  .scard.danger .num{color:var(--danger);}.scard.warn .num{color:var(--warn);}.scard.ok .num{color:var(--ok);}.scard.info .num{color:var(--info);}
   .scard .slabel{font-size:0.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
-
   .section-title{font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
-
-  .vehicle{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;transition:border-color 0.2s;}
-  .vehicle:hover{border-color:#3a3a3a;}
+  .vehicle{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;}
   .vehicle-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--surface2);cursor:pointer;user-select:none;}
   .vehicle-left{display:flex;align-items:center;gap:14px;}
-  .v-icon{font-size:1.4rem;}
-  .v-name{font-size:1.2rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;}
+  .v-icon{font-size:1.4rem;}.v-name{font-size:1.2rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;}
   .v-plate{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:2px;background:var(--border);color:var(--muted);padding:2px 8px;border-radius:4px;}
   .v-right{display:flex;align-items:center;gap:10px;}
   .v-dot{width:10px;height:10px;border-radius:50%;background:var(--ok);}
-  .v-dot.warn{background:var(--warn);}
-  .v-dot.danger{background:var(--danger);animation:pulse 1.2s infinite;}
+  .v-dot.warn{background:var(--warn);}.v-dot.danger{background:var(--danger);animation:pulse 1.2s infinite;}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
   .v-chevron{font-size:0.9rem;color:var(--muted);transition:transform 0.2s;}
   .vehicle.open .v-chevron{transform:rotate(180deg);}
   .deadlines{display:none;padding:14px 20px 18px;}
   .vehicle.open .deadlines{display:block;}
   .dl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:10px;}
-  .dl-item{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;border-left:3px solid var(--border);}
-  .dl-item.ok{border-left-color:var(--ok);}
-  .dl-item.warn{border-left-color:var(--warn);}
-  .dl-item.danger{border-left-color:var(--danger);}
+  .dl-item{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;border-left:3px solid var(--border);position:relative;}
+  .dl-item.ok{border-left-color:var(--ok);}.dl-item.warn{border-left-color:var(--warn);}.dl-item.danger{border-left-color:var(--danger);}
   .dl-type{font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
   .dl-date{font-family:'Space Mono',monospace;font-size:1rem;font-weight:700;}
   .dl-countdown{font-size:0.82rem;margin-top:4px;}
-  .dl-item.ok .dl-countdown{color:var(--ok);}
-  .dl-item.warn .dl-countdown{color:var(--warn);}
-  .dl-item.danger .dl-countdown{color:var(--danger);}
-
+  .dl-item.ok .dl-countdown{color:var(--ok);}.dl-item.warn .dl-countdown{color:var(--warn);}.dl-item.danger .dl-countdown{color:var(--danger);}
+  .dl-edit{position:absolute;top:8px;right:8px;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:0.7rem;padding:2px 7px;border-radius:4px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;text-transform:uppercase;}
+  .dl-edit:hover{border-color:var(--accent);color:var(--accent);}
+  .dl-modified{font-size:0.65rem;color:var(--muted);margin-top:3px;font-style:italic;}
   .alerts-panel{margin-bottom:28px;}
-  .alert-row{display:flex;align-items:center;gap:12px;padding:11px 16px;border-radius:var(--radius);margin-bottom:8px;font-size:0.95rem;font-weight:600;letter-spacing:0.3px;}
+  .alert-row{display:flex;align-items:center;gap:12px;padding:11px 16px;border-radius:var(--radius);margin-bottom:8px;font-size:0.95rem;font-weight:600;}
   .alert-row.danger{background:rgba(224,48,80,0.10);border:1px solid rgba(224,48,80,0.28);color:#ff8090;}
   .alert-row.warn{background:rgba(240,128,48,0.09);border:1px solid rgba(240,128,48,0.28);color:#ffaa60;}
-  .alert-icon{font-size:1rem;flex-shrink:0;}
-  .alert-text{flex:1;}
+  .alert-icon{font-size:1rem;flex-shrink:0;}.alert-text{flex:1;}
   .alert-days{font-family:'Space Mono',monospace;font-size:0.75rem;opacity:0.8;white-space:nowrap;}
 
-  @media(max-width:600px){
-    .summary{grid-template-columns:repeat(2,1fr);}
-    .dl-grid{grid-template-columns:1fr 1fr;}
-    header{padding:12px 14px;}
-    main{padding:16px 10px;}
-    .v-name{font-size:1rem;}
-  }
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(–surface);border:1px solid var(–border);border-radius:12px;padding:28px;width:320px;max-width:90vw;}
+.modal h3{font-size:1.1rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.modal .modal-sub{font-size:0.8rem;color:var(–muted);margin-bottom:20px;letter-spacing:1px;}
+.modal label{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(–muted);display:block;margin-bottom:6px;}
+.modal input[type=date]{width:100%;background:var(–bg);border:1px solid var(–border);color:var(–text);padding:10px 12px;border-radius:var(–radius);font-family:‘Space Mono’,monospace;font-size:1rem;margin-bottom:20px;outline:none;}
+.modal input[type=date]:focus{border-color:var(–accent);}
+.modal-btns{display:flex;gap:10px;}
+.btn-save{flex:1;background:var(–accent);color:#000;border:none;padding:10px;border-radius:var(–radius);font-family:‘Barlow Condensed’,sans-serif;font-weight:800;font-size:1rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
+.btn-save:hover{background:#ffd060;}
+.btn-cancel{flex:1;background:transparent;color:var(–muted);border:1px solid var(–border);padding:10px;border-radius:var(–radius);font-family:‘Barlow Condensed’,sans-serif;font-weight:700;font-size:1rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
+.btn-cancel:hover{color:var(–text);}
+.btn-reset{width:100%;margin-top:10px;background:transparent;color:var(–danger);border:1px solid var(–danger);padding:8px;border-radius:var(–radius);font-family:‘Barlow Condensed’,sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
+.btn-reset:hover{background:var(–danger);color:#fff;}
+
+@media(max-width:600px){
+.summary{grid-template-columns:repeat(2,1fr);}
+.dl-grid{grid-template-columns:1fr 1fr;}
+header{padding:12px 14px;}
+main{padding:16px 10px;}
+.v-name{font-size:1rem;}
+}
 </style>
+
 </head>
 <body>
 
@@ -96,20 +98,34 @@
     <div class="scard info"><div class="num" id="s-soon">0</div><div class="slabel">Entro 90 giorni</div></div>
     <div class="scard ok"><div class="num" id="s-ok">0</div><div class="slabel">In regola</div></div>
   </div>
-
   <div class="section-title">Avvisi</div>
   <div class="alerts-panel" id="alertsPanel"></div>
-
-  <div class="section-title">I tuoi mezzi — clicca per espandere</div>
+  <div class="section-title">I tuoi mezzi — tocca per espandere</div>
   <div id="vehicleList"></div>
-
   <div class="section-title" style="margin-top:28px;">Documenti personali</div>
   <div id="docList"></div>
 </main>
 
+<!-- MODAL -->
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3 id="modalTitle">Aggiorna scadenza</h3>
+    <div class="modal-sub" id="modalSub"></div>
+    <label>Nuova data di scadenza</label>
+    <input type="date" id="modalDate">
+    <div class="modal-btns">
+      <button class="btn-cancel" id="modalCancel">Annulla</button>
+      <button class="btn-save" id="modalSave">Salva</button>
+    </div>
+    <button class="btn-reset" id="modalReset">↺ Ripristina data originale</button>
+  </div>
+</div>
+
 <script>
 const TODAY = new Date();
 TODAY.setHours(0,0,0,0);
+const STORAGE_KEY = 'scadenziario_dates';
 
 const VEHICLES = [
   {name:"Honda SH 300",plate:"CY41548",icon:"🛵",deadlines:[
@@ -145,38 +161,45 @@ const VEHICLES = [
 ];
 
 const DOCUMENTS = [
-  {name:"Patente di Guida",number:"IM 5212339K",icon:"🪪",deadlines:[
-    {type:"Scadenza",date:"2028-11-14"}
-  ]},
-  {name:"Carta d'Identità",number:"CA 91288QU",icon:"🪪",deadlines:[
-    {type:"Scadenza",date:"2033-11-14"}
-  ]},
-  {name:"Passaporto",number:"YB6571179",icon:"📘",deadlines:[
-    {type:"Scadenza",date:"2030-08-30"}
-  ]}
+  {name:"Patente di Guida",number:"IM 5212339K",icon:"🪪",deadlines:[{type:"Scadenza",date:"2028-11-14"}]},
+  {name:"Carta d'Identità",number:"CA 91288QU",icon:"🪪",deadlines:[{type:"Scadenza",date:"2033-11-14"}]},
+  {name:"Passaporto",number:"YB6571179",icon:"📘",deadlines:[{type:"Scadenza",date:"2030-08-30"}]}
 ];
+
+// localStorage helpers
+function loadOverrides(){
+  try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); }
+  catch(e){ return {}; }
+}
+function saveOverrides(obj){ localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); }
+function makeKey(itemName, dlType){ return `${itemName}||${dlType}`; }
+
+let overrides = loadOverrides();
+
+function getDate(itemName, dlType, originalDate){
+  const k = makeKey(itemName, dlType);
+  return overrides[k] ? overrides[k].date : originalDate;
+}
+function isModified(itemName, dlType){
+  return !!overrides[makeKey(itemName, dlType)];
+}
 
 function daysDiff(dateStr){
   const d=new Date(dateStr);d.setHours(0,0,0,0);
   return Math.round((d-TODAY)/86400000);
 }
-function getStatus(days){
-  if(days<=30)return"danger";
-  if(days<=90)return"warn";
-  return"ok";
-}
+function getStatus(days){ return days<=30?"danger":days<=90?"warn":"ok"; }
 function countdownLabel(days){
   if(days<0)return`Scaduta da ${Math.abs(days)} giorni`;
   if(days===0)return"Scade oggi!";
   return`${days} giorni rimasti`;
 }
-function fmtDate(s){
-  const[y,m,d]=s.split("-");return`${d}/${m}/${y}`;
-}
-function worstStatus(deadlines){
+function fmtDate(s){ const[y,m,d]=s.split("-");return`${d}/${m}/${y}`; }
+function worstStatus(item){
   let w="ok";
-  for(const dl of deadlines){
-    const s=getStatus(daysDiff(dl.date));
+  for(const dl of item.deadlines){
+    const effDate = getDate(item.name, dl.type, dl.date);
+    const s=getStatus(daysDiff(effDate));
     if(s==="danger")return"danger";
     if(s==="warn")w="warn";
   }
@@ -186,79 +209,131 @@ function worstStatus(deadlines){
 document.getElementById("dateNow").textContent=
   TODAY.toLocaleDateString("it-IT",{weekday:"long",day:"2-digit",month:"long",year:"numeric"}).toUpperCase();
 
-let cD=0,cW=0,cS=0,cO=0;
-const alerts=[];
+// MODAL
+let modalContext = null;
+const overlay = document.getElementById("modalOverlay");
+const modalDate = document.getElementById("modalDate");
 
-function countItems(items, labelFn) {
-  items.forEach(v=>{
-    v.deadlines.forEach(dl=>{
-      const days=daysDiff(dl.date),st=getStatus(days);
-      if(st==="danger"){cD++;alerts.push({status:"danger",text:labelFn(v,dl),days});}
-      else if(st==="warn"){cW++;alerts.push({status:"warn",text:labelFn(v,dl),days});}
-      else if(days<=90){cS++;}
-      else{cO++;}
+document.getElementById("modalCancel").onclick = ()=>overlay.classList.remove("open");
+overlay.addEventListener("click", e=>{ if(e.target===overlay)overlay.classList.remove("open"); });
+
+document.getElementById("modalSave").onclick = ()=>{
+  if(!modalDate.value || !modalContext) return;
+  const k = makeKey(modalContext.itemName, modalContext.dlType);
+  overrides[k] = { date: modalDate.value };
+  saveOverrides(overrides);
+  overlay.classList.remove("open");
+  rebuild();
+};
+
+document.getElementById("modalReset").onclick = ()=>{
+  if(!modalContext) return;
+  const k = makeKey(modalContext.itemName, modalContext.dlType);
+  delete overrides[k];
+  saveOverrides(overrides);
+  overlay.classList.remove("open");
+  rebuild();
+};
+
+function openModal(itemName, dlType, currentDate, originalDate){
+  modalContext = {itemName, dlType, originalDate};
+  document.getElementById("modalTitle").textContent = dlType;
+  document.getElementById("modalSub").textContent = itemName;
+  modalDate.value = currentDate;
+  document.getElementById("modalReset").style.display = isModified(itemName, dlType) ? "block" : "none";
+  overlay.classList.add("open");
+}
+
+function rebuild(){
+  // Reset counters
+  let cD=0,cW=0,cS=0,cO=0;
+  const alerts=[];
+
+  function countItems(items, labelFn){
+    items.forEach(v=>{
+      v.deadlines.forEach(dl=>{
+        const effDate = getDate(v.name||v.name, dl.type, dl.date);
+        const days=daysDiff(effDate),st=getStatus(days);
+        if(st==="danger"){cD++;alerts.push({status:"danger",text:labelFn(v,dl),days});}
+        else if(st==="warn"){cW++;alerts.push({status:"warn",text:labelFn(v,dl),days});}
+        else if(days<=90){cS++;}
+        else{cO++;}
+      });
     });
-  });
-}
+  }
+  countItems(VEHICLES,(v,dl)=>`${v.name} (${v.plate}) — ${dl.type}`);
+  countItems(DOCUMENTS,(d,dl)=>`${d.name} (${d.number}) — ${dl.type}`);
 
-countItems(VEHICLES,(v,dl)=>`${v.name} (${v.plate}) — ${dl.type}`);
-countItems(DOCUMENTS,(d,dl)=>`${d.name} (${d.number}) — ${dl.type}`);
+  document.getElementById("s-danger").textContent=cD;
+  document.getElementById("s-warn").textContent=cW;
+  document.getElementById("s-soon").textContent=cS;
+  document.getElementById("s-ok").textContent=cO;
 
-document.getElementById("s-danger").textContent=cD;
-document.getElementById("s-warn").textContent=cW;
-document.getElementById("s-soon").textContent=cS;
-document.getElementById("s-ok").textContent=cO;
+  alerts.sort((a,b)=>a.days-b.days);
+  const ap=document.getElementById("alertsPanel");
+  if(alerts.length===0){
+    ap.innerHTML=`<div class="alert-row" style="background:rgba(62,207,110,0.08);border:1px solid rgba(62,207,110,0.2);color:#3ecf6e;">
+      <span class="alert-icon">✅</span><span class="alert-text">Tutto in regola — nessuna scadenza imminente!</span></div>`;
+  }else{
+    ap.innerHTML=alerts.map(a=>`
+      <div class="alert-row ${a.status}">
+        <span class="alert-icon">${a.status==="danger"?"🔴":"🟡"}</span>
+        <span class="alert-text">${a.text}</span>
+        <span class="alert-days">${countdownLabel(a.days)}</span>
+      </div>`).join("");
+  }
 
-alerts.sort((a,b)=>a.days-b.days);
-const ap=document.getElementById("alertsPanel");
-if(alerts.length===0){
-  ap.innerHTML=`<div class="alert-row" style="background:rgba(62,207,110,0.08);border:1px solid rgba(62,207,110,0.2);color:#3ecf6e;">
-    <span class="alert-icon">✅</span><span class="alert-text">Tutto in regola — nessuna scadenza imminente!</span></div>`;
-}else{
-  ap.innerHTML=alerts.map(a=>`
-    <div class="alert-row ${a.status}">
-      <span class="alert-icon">${a.status==="danger"?"🔴":"🟡"}</span>
-      <span class="alert-text">${a.text}</span>
-      <span class="alert-days">${countdownLabel(a.days)}</span>
-    </div>`).join("");
-}
-
-function renderCards(items, container, labelKey) {
-  items.forEach(v=>{
-    const ws=worstStatus(v.deadlines);
-    const dotCls=ws==="danger"?"danger":ws==="warn"?"warn":"";
-    const sub = v[labelKey];
-    const dlHtml=v.deadlines.map(dl=>{
-      const days=daysDiff(dl.date),st=getStatus(days);
-      return`<div class="dl-item ${st}">
-        <div class="dl-type">${dl.type}</div>
-        <div class="dl-date">${fmtDate(dl.date)}</div>
-        <div class="dl-countdown">${countdownLabel(days)}</div>
-      </div>`;
-    }).join("");
-    const card=document.createElement("div");
-    card.className="vehicle";
-    card.innerHTML=`
-      <div class="vehicle-header">
-        <div class="vehicle-left">
-          <span class="v-icon">${v.icon}</span>
-          <span class="v-name">${v.name}</span>
-          <span class="v-plate">${sub}</span>
+  function renderCards(items, container, labelKey){
+    container.innerHTML="";
+    items.forEach(v=>{
+      const ws=worstStatus(v);
+      const dotCls=ws==="danger"?"danger":ws==="warn"?"warn":"";
+      const sub=v[labelKey];
+      const dlHtml=v.deadlines.map(dl=>{
+        const effDate=getDate(v.name, dl.type, dl.date);
+        const days=daysDiff(effDate),st=getStatus(days);
+        const mod=isModified(v.name, dl.type);
+        return`<div class="dl-item ${st}">
+          <button class="dl-edit" data-name="${v.name}" data-type="${dl.type}" data-cur="${effDate}" data-orig="${dl.date}">✏️</button>
+          <div class="dl-type">${dl.type}</div>
+          <div class="dl-date">${fmtDate(effDate)}</div>
+          <div class="dl-countdown">${countdownLabel(days)}</div>
+          ${mod?`<div class="dl-modified">✓ aggiornata</div>`:""}
+        </div>`;
+      }).join("");
+      const card=document.createElement("div");
+      card.className="vehicle";
+      card.innerHTML=`
+        <div class="vehicle-header">
+          <div class="vehicle-left">
+            <span class="v-icon">${v.icon}</span>
+            <span class="v-name">${v.name}</span>
+            <span class="v-plate">${sub}</span>
+          </div>
+          <div class="v-right">
+            <span class="v-dot ${dotCls}"></span>
+            <span class="v-chevron">▼</span>
+          </div>
         </div>
-        <div class="v-right">
-          <span class="v-dot ${dotCls}"></span>
-          <span class="v-chevron">▼</span>
-        </div>
-      </div>
-      <div class="deadlines"><div class="dl-grid">${dlHtml}</div></div>`;
-    card.querySelector(".vehicle-header").addEventListener("click",()=>card.classList.toggle("open"));
-    if(ws==="danger"||ws==="warn")card.classList.add("open");
-    container.appendChild(card);
-  });
+        <div class="deadlines"><div class="dl-grid">${dlHtml}</div></div>`;
+      card.querySelector(".vehicle-header").addEventListener("click",()=>card.classList.toggle("open"));
+      card.querySelectorAll(".dl-edit").forEach(btn=>{
+        btn.addEventListener("click",e=>{
+          e.stopPropagation();
+          openModal(btn.dataset.name, btn.dataset.type, btn.dataset.cur, btn.dataset.orig);
+        });
+      });
+      if(ws==="danger"||ws==="warn")card.classList.add("open");
+      container.appendChild(card);
+    });
+  }
+
+  renderCards(VEHICLES, document.getElementById("vehicleList"), "plate");
+  renderCards(DOCUMENTS, document.getElementById("docList"), "number");
 }
 
-renderCards(VEHICLES, document.getElementById("vehicleList"), "plate");
-renderCards(DOCUMENTS, document.getElementById("docList"), "number");
+rebuild();
 </script>
+
 </body>
 </html>
