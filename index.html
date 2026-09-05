@@ -90,6 +90,11 @@
 </header>
 
 <main>
+  <section style="margin-bottom:24px;padding:16px;border:1px solid var(--accent);border-radius:8px;">
+    <button type="button" id="exportBackup" class="btn-save" style="min-height:44px;width:100%;">Esporta backup</button>
+    <p style="margin-top:10px;">Salva mezzi, documenti e date aggiornate. Su iPad scegli “Salva su File”.</p>
+    <p id="backupStatus" role="status" style="margin-top:8px;"></p>
+  </section>
   <div class="summary">
     <div class="scard danger"><div class="num" id="s-danger">0</div><div class="slabel">Scadute / Urgenti</div></div>
     <div class="scard warn"><div class="num" id="s-warn">0</div><div class="slabel">Entro 30 giorni</div></div>
@@ -329,6 +334,49 @@ function rebuild(){
   renderCards(VEHICLES, document.getElementById("vehicleList"), "plate");
   renderCards(DOCUMENTS, document.getElementById("docList"), "number");
 }
+
+
+function createBackup(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  const saved = raw === null ? {} : JSON.parse(raw);
+  if (!saved || typeof saved !== 'object' || Array.isArray(saved)) throw new Error('Dati locali non validi');
+  const snapshot = items => items.map(item => ({
+    ...item,
+    deadlines: item.deadlines.map(dl => ({
+      ...dl, date: saved[makeKey(item.name, dl.type)]?.date || dl.date
+    }))
+  }));
+  return {
+    format: 'scadenziario-backup', version: 1,
+    exportedAt: new Date().toISOString(),
+    vehicles: snapshot(VEHICLES), documents: snapshot(DOCUMENTS),
+    overrides: saved, originalVehicles: VEHICLES, originalDocuments: DOCUMENTS,
+    localStorageRaw: raw
+  };
+}
+document.getElementById('exportBackup').onclick = async function(){
+  const status = document.getElementById('backupStatus');
+  try {
+    const backup = createBackup();
+    const name = 'scadenziario-backup-' + new Date().toISOString().replace(/[:.]/g, '-') + '.json';
+    const file = new File([JSON.stringify(backup, null, 2)], name, {type:'application/json'});
+    if (navigator.canShare && navigator.canShare({files:[file]})) {
+      await navigator.share({files:[file], title:'Backup Scadenziario'});
+      status.textContent = 'Condivisione completata. Verifica di aver salvato il file in File.';
+    } else {
+      const url = URL.createObjectURL(file);
+      const link = document.createElement('a');
+      link.href = url; link.download = name;
+      document.body.appendChild(link); link.click(); link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+      status.textContent = 'Download richiesto. Conserva il file JSON; se si apre, usa Condividi → Salva su File.';
+    }
+  } catch(error) {
+    status.textContent = error.name === 'AbortError'
+      ? 'Esportazione annullata. Puoi riprovare.'
+      : 'Impossibile esportare il backup. I dati non sono stati modificati.';
+  }
+};
 
 rebuild();
 </script>
